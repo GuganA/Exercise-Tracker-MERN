@@ -1,7 +1,7 @@
 const router = require('express').Router();
 let User = require('../modals/users.modals');
 
-router.get('/', (req, res) => {
+router.get('/', (_req, res) => {
     User.find().then((users) => {
         res.json(users)
     }).catch((err) => {
@@ -17,6 +17,14 @@ router.post('/add', (req, res) => {
         res.json(username + ' user added!!!');
     }).catch(err => {
         res.json('Error: ' + err);
+    });
+});
+
+router.delete('/:id', (req, res) => {
+    User.findByIdAndDelete(req.params.id).then((users) => {
+        res.json(` ${users} deleted!!!`);
+    }).catch((err) => {
+        res.status(400).json('Error : ' + err)
     });
 });
 

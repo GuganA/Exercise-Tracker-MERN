@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import moment from 'moment';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 toast.configure()
 
 const Exercise = (props) => {
-    let normalDate = new Date(props.exercise.date * 100).toISOString().substr(11, 8);
+    let normalDate = moment(props.exercise.date).format('DD-MM-YYYY hh:mm:ss');
     return (
         <tr>
             <td>{props.exercise.username}</td>
             <td>{props.exercise.description}</td>
-            <td>{props.exercise.duration}</td>
+            <td>{props.exercise.duration} minutes</td>
             <td>{normalDate}</td>
             <td>
-                <Link to={'/edit/' + props.exercise._id}>Edit</Link> | <a href='#' onClick={() => props.deleteExercise(props.exercise._id)}>Delete</a>
+                <Button to={'/edit/' + props.exercise._id} variant="outlined">Update</Button> | <Button onClick={() => props.deleteExercise(props.exercise._id)} startIcon={<DeleteIcon />} variant="contained">Delete</Button>
             </td>
         </tr>
     )
@@ -43,7 +45,7 @@ export default class ExerciseList extends Component {
             }).catch(err => {
                 toast.error(err);
                 console.log(err);
-            })
+            });
     }
 
     deleteExercise(id) {
@@ -70,14 +72,14 @@ export default class ExerciseList extends Component {
     render() {
         return (
             <div>
-                <h3>Exercise Lists components</h3>
+                <h3>Exercise Lists</h3>
                 <table className="table table-striped">
                     <thead className="thead-light">
                         <tr>
                             <th>Username</th>
                             <th>Description</th>
                             <th>Duration</th>
-                            <th>Date</th>
+                            <th>Date & Time</th>
                             <th>Actions</th>
                         </tr>
                     </thead>

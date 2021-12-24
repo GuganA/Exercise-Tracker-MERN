@@ -31,7 +31,7 @@ router.post('/add', (req, res) => {
 
 router.get('/:id', (req, res) => {
     Exercise.findById(req.params.id).then((exercises) => {
-        res.json(exercises)
+        res.json(exercises);
     }).catch((err) => {
         res.status(400).json('Error : ' + err)
     });
@@ -39,7 +39,7 @@ router.get('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     Exercise.findByIdAndDelete(req.params.id).then((exercises) => {
-        res.json(' User deleted!!!');
+        res.json(` ${exercises} deleted!!!`);
     }).catch((err) => {
         res.status(400).json('Error : ' + err)
     });

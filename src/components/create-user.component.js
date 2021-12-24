@@ -35,7 +35,7 @@ export default class CreateUser extends Component {
         axios.post('http://localhost:3006/users/add', user)
         .then((response) => {
             if(response.data.indexOf('error')){
-                toast.error(response.data);
+                toast.info(response.data);
             } else {
                 toast.info(response.data);
             }
@@ -53,7 +53,7 @@ export default class CreateUser extends Component {
     render() {
         return (
             <div>
-                <h1>Create New User</h1>
+                <h1>Add User</h1>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Username : </label>
@@ -62,6 +62,7 @@ export default class CreateUser extends Component {
                         value={this.state.username}
                         onChange={this.onChangeUsername}/>
                     </div>
+                    <h1></h1>
                     <div className="form-group">
                         <input type="Submit" value = "Create User" className="btn btn-primary" />
                     </div>

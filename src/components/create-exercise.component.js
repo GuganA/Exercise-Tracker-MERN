@@ -43,8 +43,8 @@ export default class CreateExercise extends Component {
             }
         })
         this.setState({
-            user: ['testuser'],
-            username: 'testuser'
+            user: [],
+            username: ''
         })
     }
 
@@ -101,7 +101,7 @@ export default class CreateExercise extends Component {
     render() {
         return (
             <div>
-                <h3>Create New Exercise Log</h3>
+                <h3>Create Exercise Log</h3>
                 <form onSubmit={(e) => this.onSubmit(e)}>
                     <div className="form-group">
                         <label>UserName : </label>
@@ -144,6 +144,7 @@ export default class CreateExercise extends Component {
                             />
                         </div>
                     </div>
+                    <h1></h1>
                     <div className="form-group">
                         <input type="Submit" value = "Create New Log" className="btn btn-primary" />
                     </div>
